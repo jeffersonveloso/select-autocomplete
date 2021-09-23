@@ -1,0 +1,58 @@
+<ion-row class="ion-justify-content-start ion-align-items-center">
+  <ion-col size="12" class="ion-align-self-center">
+    <div>
+      <span>{{ inputConfig.labelInput }}</span>
+      <br />
+      <div class="dropdown">
+        <ion-input
+          [(ngModel)]="inputConfig.searchText"
+          id="searchTextAutocomplete{{ inputConfig.dataName }}"
+          name="searchTextAutocomplete{{ inputConfig.dataName }}"
+          placeholder="Pesquisar"
+          debounce="500"
+          mode="ios"
+          autocorrect="off"
+          spellcheck="false"
+          (ionChange)="search(inputConfig.func)"
+          (ionFocus)="checkFocusEvent()"
+          clearInput
+        >
+        </ion-input>
+
+        <ion-list
+          *ngIf="inputConfig.showResults"
+          id="results"
+          class="results"
+          #optionsContainer
+          (scroll)="onScroll($event)"
+        >
+          <ion-item
+            lines="none"
+            detail="false"
+            button
+            id="optionItem"
+            (click)="selectItem(row)"
+            class="ion-no-padding ion-text-center"
+            *ngFor="let row of inputConfig.data"
+          >
+            <ion-text style="padding-left: 5px" id="optionItem">
+              {{ row[inputConfig?.properties?.text] }}
+            </ion-text>
+            <ion-icon
+              [name]="
+                row.selected
+                  ? 'radio-button-on-outline'
+                  : 'radio-button-off-outline'
+              "
+              slot="end"
+              id="optionItem"
+            ></ion-icon>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  </ion-col>
+  <!-- <ion-col size="2" class="ion-align-self-end">
+    <ion-spinner></ion-spinner>
+  </ion-col> -->
+</ion-row>
