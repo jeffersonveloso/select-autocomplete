@@ -82,7 +82,13 @@ export class SelectSearchableComponent implements OnInit {
     });
   }
 
-  checkFocusEvent() {
+  checkIonInputEvent(event) {
+    console.log('IONINPUT');
+    this.search(this.inputConfig.func);
+  }
+
+  checkFocusEvent(event) {
+    console.log('FOCUS EVENT', event.target.value);
     this.search(this.inputConfig.func);
   }
 

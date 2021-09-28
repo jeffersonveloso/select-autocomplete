@@ -1,5 +1,5 @@
 <ion-row class="ion-justify-content-start ion-align-items-center">
-  <ion-col size="12" class="ion-align-self-center">
+  <ion-col size="10" class="ion-align-self-center">
     <div>
       <span>{{ inputConfig.labelInput }}</span>
       <br />
@@ -13,9 +13,10 @@
           mode="ios"
           autocorrect="off"
           spellcheck="false"
-          (ionChange)="search(inputConfig.func)"
-          (ionFocus)="checkFocusEvent()"
+          enterkeyhint="search"
           clearInput
+          (ionInput)="checkIonInputEvent($event)"
+          (ionFocus)="checkFocusEvent($event)"
         >
         </ion-input>
 
@@ -52,7 +53,11 @@
       </div>
     </div>
   </ion-col>
-  <!-- <ion-col size="2" class="ion-align-self-end">
+  <!-- <ion-col
+    size="2"
+    class="ion-align-self-end"
+    *ngIf="inputConfig.data.length === 0"
+  >
     <ion-spinner></ion-spinner>
   </ion-col> -->
 </ion-row>
